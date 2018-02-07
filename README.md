@@ -1,5 +1,8 @@
 # vat-siren-siret
 
+[![Build Status](https://travis-ci.org/MathieuDerelle/vat-siren-siret.svg?branch=master)](https://travis-ci.org/MathieuDerelle/vat-siren-siret)
+[![Coverage Status](https://coveralls.io/repos/github/MathieuDerelle/vat-siren-siret/badge.svg)](https://coveralls.io/github/MathieuDerelle/vat-siren-siret)
+
 This library allows to check french VAT, SIRET and SIREN and to generate VAT or SIREN from SIRET, SIREN and VAT.
 
 It has been largely inspired by the [eponymous JS library](https://github.com/jbdemonte/vat-siren-siret).
