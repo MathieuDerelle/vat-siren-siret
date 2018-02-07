@@ -12,39 +12,45 @@ module Vss
     formatVAT: /^([A-Z]{2})(\d{2})(\d{3})(\d{3})(\d{3})$/
   }.freeze
 
-  def siren?(siren)
-    match?(REGEXPS[:SIREN], siren) && valid_luhn?(siren)
+  def self.siren?(siren)
+    siren.is_a?(String) && match?(REGEXPS[:SIREN], siren) && valid_luhn?(siren)
   end
 
-  def siret?(siret)
-    match?(REGEXPS[:SIRET], siret) && valid_luhn?(siret)
+  def self.siret?(siret)
+    siret.is_a?(String) && match?(REGEXPS[:SIRET], siret) && valid_luhn?(siret)
   end
 
-  def vat?(_vat)
-    # TODO
+  def self.vat?(vat)
+    vat.is_a?(String) && match?(REGEXPS[:VAT], vat) && valid_vat?(vat)
   end
 
-  module_function :siren?, :siret?, :vat?
-
-  private
-
-  def match?(re, str)
+  def self.match?(re, str)
     return re.match?(str) if re.respond_to?(:match?) # ruby >= 2.4
     !(re =~ str).nil?
   end
 
-  def valid_luhn?(string)
-    checksum = string.each_char
-                     .map(&:to_i)
-                     .reverse
-                     .each_with_index
-                     .sum do |digit, idx|
+  # https://fr.wikipedia.org/wiki/Formule_de_Luhn
+  def self.valid_luhn?(string)
+    checksum = 0
+    string.each_char
+          .map(&:to_i)
+          .reverse
+          .each_with_index do |digit, idx|
       tmp = idx.odd? ? digit * 2 : digit
       tmp -= 9 if tmp > 9
-      tmp
+      checksum += tmp
     end
     (checksum % 10).zero?
   end
 
-  module_function :match?, :valid_luhn?
+  def self.valid_vat?(string)
+    siren = string[4..-1]
+    vat_key(siren) == string[2..3].to_i && valid_luhn?(siren)
+  end
+
+  def self.vat_key(string)
+    (12 + (3 * (string.to_i % 97))) % 97
+  end
+
+  private_class_method :match?, :valid_luhn?, :valid_vat?, :vat_key
 end
