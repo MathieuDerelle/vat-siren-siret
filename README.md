@@ -2,7 +2,7 @@
 
 This library allows to check french VAT, SIRET and SIREN and to generate VAT or SIREN from SIRET, SIREN and VAT.
 
-It has been largely inspired by the eponymous JS library.
+It has been largely inspired by the [eponymous JS library](https://github.com/jbdemonte/vat-siren-siret).
 
 ## Installation
 
@@ -72,7 +72,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/vat-siren-siret.
+Bug reports and pull requests are welcome on GitHub at https://github.com/MathieuDerelle/vat-siren-siret.
 
 ## License
 
