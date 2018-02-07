@@ -1,3 +1,7 @@
 Metrics/LineLength:
   Max: 120
   IgnoredPatterns: ['\A#']
+
+Style/BlockLength:
+  Exclude:
+    - 'spec/**/*.rb'
