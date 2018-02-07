@@ -1,36 +1,36 @@
-# coding: utf-8
-lib = File.expand_path("../lib", __FILE__)
+
+lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require "vat/siren/siret/version"
+require 'vat/siren/siret/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "vat-siren-siret"
+  spec.name          = 'vat-siren-siret'
   spec.version       = Vat::Siren::Siret::VERSION
-  spec.authors       = ["MathieuDerelle"]
-  spec.email         = ["mathieu@purchease.com"]
+  spec.authors       = ['MathieuDerelle']
+  spec.email         = ['mathieu@purchease.com']
 
-  spec.summary       = %q{Library to check or generate french VAT / SIRET / SIREN}
-  spec.description   = %q{Transposition in ruby of the eponymous JS library}
-  spec.homepage      = "https://github.com/MathieuDerelle/vat-siren-siret"
-  spec.license       = "MIT"
+  spec.summary       = 'Library to check or generate french VAT / SIRET / SIREN'
+  spec.description   = 'Transposition in ruby of the eponymous JS library'
+  spec.homepage      = 'https://github.com/MathieuDerelle/vat-siren-siret'
+  spec.license       = 'MIT'
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
   # to allow pushing to a single host or delete this section to allow pushing to any host.
   if spec.respond_to?(:metadata)
-    spec.metadata["allowed_push_host"] = "http://rubygems.org"
+    spec.metadata['allowed_push_host'] = 'http://rubygems.org'
   else
-    raise "RubyGems 2.0 or newer is required to protect against public gem pushes."
+    raise 'RubyGems 2.0 or newer is required to protect against public gem pushes.'
   end
 
-  spec.files         = `git ls-files -z`.split("\x0").reject do |f|
+  spec.files = `git ls-files -z`.split("\x0").reject do |f|
     f.match(%r{^(test|spec|features)/})
   end
-  spec.bindir        = "exe"
+  spec.bindir        = 'exe'
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
-  spec.require_paths = ["lib"]
+  spec.require_paths = ['lib']
 
-  spec.add_development_dependency "bundler", "~> 1.15"
-  spec.add_development_dependency "rake", "~> 10.0"
-  spec.add_development_dependency "rspec", "~> 3.0"
+  spec.add_development_dependency 'bundler', '~> 1.15'
+  spec.add_development_dependency 'rake', '~> 10.0'
+  spec.add_development_dependency 'rspec', '~> 3.0'
   spec.add_development_dependency 'rubocop', '~> 0.52.1'
 end

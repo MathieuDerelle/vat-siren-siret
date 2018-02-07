@@ -1,4 +1,4 @@
-require "vat/siren/siret/version"
+require 'vat/siren/siret/version'
 
 module Vat
   module Siren
