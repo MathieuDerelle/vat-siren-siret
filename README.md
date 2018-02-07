@@ -1,15 +1,15 @@
-# Vat::Siren::Siret
+# vat-siren-siret
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/vat/siren/siret`. To experiment with that code, run `bin/console` for an interactive prompt.
+This library allows to check french VAT, SIRET and SIREN and to generate VAT or SIREN from SIRET, SIREN and VAT.
 
-TODO: Delete this and the text above, and describe your gem
+It has been largely inspired by the eponymous JS library.
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'vat-siren-siret'
+gem 'vat-siren-siret', '~> 0.1'
 ```
 
 And then execute:
@@ -22,7 +22,47 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+```
+// Check string
+
+Vss.siren?('813454717')      // true
+Vss.siret?('81345471700014') // true
+Vss.vat?('FR42813454717')    // true
+
+// Generate VAT from SIREN / SIRET
+Vss.to_vat('813454717')      // FR42813454717
+Vss.to_vat('81345471700014') // FR42813454717
+
+// Generate SIREN from SIRET / VAT
+Vss.to_siren('81345471700014') // 813454717
+Vss.to_siren('FR42813454717')  // 813454717
+```
+
+## API
+
+### Vss.siren?(value)
+
+Evaluate if the `value` is a SIREN and return a `boolean`.
+
+### Vss.siret?(value)
+
+Evaluate if the `value` is a SIRET and return a `boolean`.
+
+### Vss.vat?(value)
+
+Evaluate if the `value` is a french VAT and return a `boolean`.
+
+### Vss.to_vat(value)
+
+Generate the french VAT from a SIREN or a SIRET and return a `string`
+Return `false` when value is neither a SIREN, SIRET or VAT.
+Return `value` if it already is a VAT.
+
+### Vss.to_siren(value)
+
+Generate the SIREN from a VAT or a SIRET and return a `string`
+Return `false` when value is neither a SIREN, SIRET or VAT.
+Return `value` if it already is a SIREN.
 
 ## Development
 
