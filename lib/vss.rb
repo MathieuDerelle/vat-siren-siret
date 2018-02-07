@@ -4,11 +4,11 @@ module Vss
   VERSION = '0.1.0'.freeze
 
   REGEXPS = {
-    SIRET: /^\d{14}$/,
     SIREN: /^\d{9}$/,
+    SIRET: /^\d{14}$/,
     VAT: /^FR\d{11}$/,
-    formatSIRET: /^(\d{3})(\d{3})(\d{3})(\d{5})$/,
     formatSIREN: /(\d\d\d\B)/,
+    formatSIRET: /^(\d{3})(\d{3})(\d{3})(\d{5})$/,
     formatVAT: /^([A-Z]{2})(\d{2})(\d{3})(\d{3})(\d{3})$/
   }.freeze
 
@@ -42,6 +42,21 @@ module Vss
     return false unless siren?(siren)
     key = vat_key(siren)
     "FR#{key}#{siren}"
+  end
+
+  def self.format_siren(siren)
+    raise 'Not a valid SIREN' unless siren?(siren)
+    siren.gsub(REGEXPS[:formatSIREN], '\1 ')
+  end
+
+  def self.format_siret(siret)
+    raise 'Not a valid SIRET' unless siret?(siret)
+    siret.gsub(REGEXPS[:formatSIRET], '\1 \2 \3 \4')
+  end
+
+  def self.format_vat(vat)
+    raise 'Not a valid VAT number' unless vat?(vat)
+    vat.gsub(REGEXPS[:formatVAT], '\1 \2 \3 \4 \5')
   end
 
   # private methods

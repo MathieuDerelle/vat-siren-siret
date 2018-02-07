@@ -37,4 +37,17 @@ RSpec.describe Vss do
       expect(Vss.to_siren('803417153')).to eq('803417153')
     end
   end
+
+  describe '.format_siren' do
+    [0, 1, true, false, {}, [], '81345471', '8134547171', 'FR42813454717', '81345471700014'].each do |value|
+      it "raises for #{value}" do
+        expect { Vss.format_siren(value) }.to raise_error(RuntimeError)
+      end
+    end
+
+    it 'formats valid SIREN' do
+      expect(Vss.format_siren('813454717')).to eq('813 454 717')
+      expect(Vss.format_siren('803417153')).to eq('803 417 153')
+    end
+  end
 end

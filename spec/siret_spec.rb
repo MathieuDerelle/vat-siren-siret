@@ -14,4 +14,17 @@ RSpec.describe Vss do
       end
     end
   end
+
+  describe '.format_siret' do
+    [0, 1, true, false, {}, [], '813454717', 'FR42813454717', '813454717000141', '181345471700014'].each do |value|
+      it "raises for #{value}" do
+        expect { Vss.format_siret(value) }.to raise_error(RuntimeError)
+      end
+    end
+
+    it 'formats valid SIRET' do
+      expect(Vss.format_siret('81345471700014')).to eq('813 454 717 00014')
+      expect(Vss.format_siret('80341715300035')).to eq('803 417 153 00035')
+    end
+  end
 end

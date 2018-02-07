@@ -37,4 +37,17 @@ RSpec.describe Vss do
       expect(Vss.to_vat('FR30803417153')).to eq('FR30803417153')
     end
   end
+
+  describe '.format_vat' do
+    [0, 1, true, false, {}, [], '813454717', 'FR4281345471', 'FR428134547171'].each do |value|
+      it "raises for #{value}" do
+        expect { Vss.format_vat(value) }.to raise_error(RuntimeError)
+      end
+    end
+
+    it 'formats valid VAT' do
+      expect(Vss.format_vat('FR42813454717')).to eq('FR 42 813 454 717')
+      expect(Vss.format_vat('FR30803417153')).to eq('FR 30 803 417 153')
+    end
+  end
 end
