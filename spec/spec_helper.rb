@@ -1,5 +1,5 @@
 require 'bundler/setup'
-require 'vat/siren/siret'
+require 'vss'
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
