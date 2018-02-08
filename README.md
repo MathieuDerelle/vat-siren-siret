@@ -10,6 +10,7 @@ This library allows to check french VAT, SIRET and SIREN, to generate french VAT
 
 It has been largely inspired by the [eponymous JS library](https://github.com/jbdemonte/vat-siren-siret) and [the ruby siret gem](https://github.com/samleb/siret)
 
+
 ## Installation
 
 Add this line to your application's Gemfile:
@@ -25,6 +26,7 @@ And then execute:
 Or install it yourself as:
 
     $ gem install vat-siren-siret
+
 
 ## Usage
 
@@ -47,6 +49,7 @@ Vss.generate_siren // 022676134
 Vss.generate_siret // 07577658981212
 Vss.generate_vat   // FR60087471512
 ```
+
 
 ## API
 
@@ -74,15 +77,30 @@ Generate the SIREN from a VAT or a SIRET and return a `string`
 Return `false` when value is neither a SIREN, SIRET or VAT.
 Return `value` if it already is a SIREN.
 
+### Vss.generate_siren
+
+Generate a random SIREN passing the luhn check.
+
+### Vss.generate_siret
+
+Generate a random SIRET passing the luhn check.
+
+### Vss.generate_vat
+
+Generate a random VAT passing the luhn check.
+
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
 
 To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
 
+
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/MathieuDerelle/vat-siren-siret.
+
 
 ## License
 
