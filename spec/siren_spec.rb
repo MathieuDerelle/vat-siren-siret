@@ -50,4 +50,12 @@ RSpec.describe Vss do
       expect(Vss.format_siren('803417153')).to eq('803 417 153')
     end
   end
+
+  describe '.generate_siren' do
+    it 'produces valid SIREN' do
+      (0..9).each do
+        expect(Vss.siren?(Vss.generate_siren)).to eq(true)
+      end
+    end
+  end
 end

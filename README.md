@@ -2,10 +2,13 @@
 
 [![Build Status](https://travis-ci.org/MathieuDerelle/vat-siren-siret.svg?branch=master)](https://travis-ci.org/MathieuDerelle/vat-siren-siret)
 [![Coverage Status](https://coveralls.io/repos/github/MathieuDerelle/vat-siren-siret/badge.svg)](https://coveralls.io/github/MathieuDerelle/vat-siren-siret)
+[![Gem Version](https://badge.fury.io/rb/vat-siren-siret.svg)](https://badge.fury.io/rb/vat-siren-siret)
+[![License](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/MathieuDerelle/vat-siren-siret/blob/master/LICENSE.txt)
+[![GitHub pull requests](https://img.shields.io/badge/PR-welcome-green.svg)](https://github.com/MathieuDerelle/vat-siren-siret/pulls)
 
-This library allows to check french VAT, SIRET and SIREN and to generate VAT or SIREN from SIRET, SIREN and VAT.
+This library allows to check french VAT, SIRET and SIREN, to generate french VAT, SIRET and SIREN and to generate VAT or SIREN from SIRET, SIREN and VAT.
 
-It has been largely inspired by the [eponymous JS library](https://github.com/jbdemonte/vat-siren-siret).
+It has been largely inspired by the [eponymous JS library](https://github.com/jbdemonte/vat-siren-siret) and [the ruby siret gem](https://github.com/samleb/siret)
 
 ## Installation
 
@@ -27,7 +30,6 @@ Or install it yourself as:
 
 ```
 // Check string
-
 Vss.siren?('813454717')      // true
 Vss.siret?('81345471700014') // true
 Vss.vat?('FR42813454717')    // true
@@ -39,6 +41,11 @@ Vss.to_vat('81345471700014') // FR42813454717
 // Generate SIREN from SIRET / VAT
 Vss.to_siren('81345471700014') // 813454717
 Vss.to_siren('FR42813454717')  // 813454717
+
+// Generate SIREN / SIRET / VAT
+Vss.generate_siren // 022676134
+Vss.generate_siret // 07577658981212
+Vss.generate_vat   // FR60087471512
 ```
 
 ## API

@@ -30,6 +30,7 @@ RSpec.describe Vss do
     it 'converts SIREN to VAT' do
       expect(Vss.to_vat('813454717')).to eq('FR42813454717')
       expect(Vss.to_vat('803417153')).to eq('FR30803417153')
+      expect(Vss.to_vat('000894402')).to eq('FR04000894402')
     end
 
     it 'converts SIREN to VAT' do
@@ -48,6 +49,14 @@ RSpec.describe Vss do
     it 'formats valid VAT' do
       expect(Vss.format_vat('FR42813454717')).to eq('FR 42 813 454 717')
       expect(Vss.format_vat('FR30803417153')).to eq('FR 30 803 417 153')
+    end
+  end
+
+  describe '.generate_vat' do
+    it 'produces valid VAT' do
+      (0..9).each do
+        expect(Vss.vat?(Vss.generate_vat)).to eq(true)
+      end
     end
   end
 end

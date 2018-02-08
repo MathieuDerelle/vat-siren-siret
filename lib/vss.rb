@@ -14,12 +14,12 @@ module Vss
 
   # Return TRUE if the SIREN is valid
   def self.siren?(siren)
-    siren.is_a?(String) && match?(REGEXPS[:SIREN], siren) && valid_luhn?(siren)
+    siren.is_a?(String) && match?(REGEXPS[:SIREN], siren) && luhn_valid?(siren)
   end
 
   # Return TRUE if the SIRET is valid
   def self.siret?(siret)
-    siret.is_a?(String) && match?(REGEXPS[:SIRET], siret) && valid_luhn?(siret)
+    siret.is_a?(String) && match?(REGEXPS[:SIRET], siret) && luhn_valid?(siret)
   end
 
   # Return TRUE if the VAT is valid
@@ -41,7 +41,19 @@ module Vss
     siren = siret?(string) ? to_siren(string) : string
     return false unless siren?(siren)
     key = vat_key(siren)
-    "FR#{key}#{siren}"
+    "FR#{format('%02d', key)}#{siren}"
+  end
+
+  def self.generate_siren
+    complete_for_luhn_checksum(generate_digits(7))
+  end
+
+  def self.generate_siret
+    complete_for_luhn_checksum(generate_digits(12))
+  end
+
+  def self.generate_vat
+    to_vat(generate_siren)
   end
 
   def self.format_siren(siren)
@@ -66,8 +78,7 @@ module Vss
     !(re =~ str).nil?
   end
 
-  # https://fr.wikipedia.org/wiki/Formule_de_Luhn
-  def self.valid_luhn?(string) # :nodoc:
+  def self.luhn_checksum(string) # :nodoc:
     checksum = 0
     string.each_char
           .map(&:to_i)
@@ -77,17 +88,33 @@ module Vss
       tmp -= 9 if tmp > 9
       checksum += tmp
     end
-    (checksum % 10).zero?
+    checksum
+  end
+
+  # https://fr.wikipedia.org/wiki/Formule_de_Luhn
+  def self.luhn_valid?(string) # :nodoc:
+    (luhn_checksum(string) % 10).zero?
   end
 
   def self.valid_vat?(string) # :nodoc:
     siren = string[4..-1]
-    vat_key(siren) == string[2..3].to_i && valid_luhn?(siren)
+    vat_key(siren) == string[2..3].to_i && luhn_valid?(siren)
   end
 
   def self.vat_key(string) # :nodoc:
     (12 + (3 * (string.to_i % 97))) % 97
   end
 
-  private_class_method :match?, :valid_luhn?, :valid_vat?, :vat_key
+  def self.generate_digits(length)
+    format("%0#{length}d", rand(10**(length - 1)))
+  end
+
+  def self.complete_for_luhn_checksum(string)
+    rest = 10 - luhn_checksum(string) % 10
+    a = rest / 3
+    b = rest > 2 ? rest - 2 * a : rest
+    "#{string}#{a}#{b}"
+  end
+
+  private_class_method :match?, :luhn_checksum, :luhn_valid?, :valid_vat?, :vat_key, :generate_digits, :complete_for_luhn_checksum
 end

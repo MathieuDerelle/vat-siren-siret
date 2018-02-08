@@ -27,4 +27,12 @@ RSpec.describe Vss do
       expect(Vss.format_siret('80341715300035')).to eq('803 417 153 00035')
     end
   end
+
+  describe '.generate_siret' do
+    it 'produces valid SIRET' do
+      (0..9).each do
+        expect(Vss.siret?(Vss.generate_siret)).to eq(true)
+      end
+    end
+  end
 end
