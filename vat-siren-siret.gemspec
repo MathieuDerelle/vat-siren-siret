@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.email         = ['mathieu@purchease.com']
 
   spec.summary       = 'Library to check or generate french VAT / SIRET / SIREN'
-  spec.description   = 'Transposition in ruby of the eponymous JS library'
+  spec.description   = 'Library to check or generate french VAT / SIRET / SIREN'
   spec.homepage      = 'https://github.com/MathieuDerelle/vat-siren-siret'
   spec.license       = 'MIT'
 
