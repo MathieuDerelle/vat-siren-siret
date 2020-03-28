@@ -1,7 +1,7 @@
 # French VAT / SIRET / SIREN numbers validation and generation as described here:
 # https://fr.wikipedia.org/wiki/Syst%C3%A8me_d%27identification_du_r%C3%A9pertoire_des_%C3%A9tablissements#Calcul_et_validit.C3.A9_d.27un_num.C3.A9ro_SIRET
 module Vss
-  VERSION = '0.1.1'.freeze
+  VERSION = '0.1.2'.freeze
 
   REGEXPS = {
     SIREN: /^\d{9}$/,
