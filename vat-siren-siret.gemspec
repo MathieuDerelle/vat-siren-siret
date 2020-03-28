@@ -31,7 +31,7 @@ Gem::Specification.new do |spec|
     'coverage_uri'      => 'https://coveralls.io/github/MathieuDerelle/vat-siren-siret',
   }
 
-  spec.required_ruby_version = '>= 1.9'
+  spec.required_ruby_version = '>= 2.0'
 
   spec.add_development_dependency 'bundler', '~> 1.15'
   spec.add_development_dependency 'rake', '~> 12.3.3'
