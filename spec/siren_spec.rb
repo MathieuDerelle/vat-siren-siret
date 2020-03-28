@@ -17,8 +17,8 @@ RSpec.describe Vss do
 
   describe '.to_siren' do
     [0, 1, true, false, {}, [], '81345471', '813454717000141', '181345471700014'].each do |value|
-      it "returns false for #{value}" do
-        expect(Vss.to_siren(value)).to eq(false)
+      it "returns nil for #{value}" do
+        expect(Vss.to_siren(value)).to eq(nil)
       end
     end
 
@@ -40,8 +40,8 @@ RSpec.describe Vss do
 
   describe '.format_siren' do
     [0, 1, true, false, {}, [], '81345471', '8134547171', 'FR42813454717', '81345471700014'].each do |value|
-      it "raises for #{value}" do
-        expect { Vss.format_siren(value) }.to raise_error(RuntimeError)
+      it "returns nil for #{value}" do
+        expect(Vss.format_siren(value)).to eq(nil)
       end
     end
 

@@ -32,14 +32,17 @@ module Vss
     return string if siren?(string)
     return string[0..8] if siret?(string)
     return string[4..-1] if vat?(string)
-    false
+
+    nil
   end
 
   # Convert a SIREN / SIRET / VAT to a VAT
   def self.to_vat(string)
     return string if vat?(string)
+
     siren = siret?(string) ? to_siren(string) : string
-    return false unless siren?(siren)
+    return unless siren?(siren)
+
     key = vat_key(siren)
     "FR#{format('%02d', key)}#{siren}"
   end
@@ -57,17 +60,20 @@ module Vss
   end
 
   def self.format_siren(siren)
-    raise 'Not a valid SIREN' unless siren?(siren)
+    return unless siren?(siren)
+
     siren.gsub(REGEXPS[:formatSIREN], '\1 ')
   end
 
   def self.format_siret(siret)
-    raise 'Not a valid SIRET' unless siret?(siret)
+    return unless siret?(siret)
+
     siret.gsub(REGEXPS[:formatSIRET], '\1 \2 \3 \4')
   end
 
   def self.format_vat(vat)
-    raise 'Not a valid VAT number' unless vat?(vat)
+    return unless vat?(vat)
+
     vat.gsub(REGEXPS[:formatVAT], '\1 \2 \3 \4 \5')
   end
 
@@ -75,6 +81,7 @@ module Vss
 
   def self.match?(re, str) # :nodoc:
     return re.match?(str) if re.respond_to?(:match?) # ruby >= 2.4
+
     !(re =~ str).nil?
   end
 

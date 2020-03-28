@@ -68,14 +68,12 @@ Evaluate if the `value` is a french VAT and return a `boolean`.
 ### Vss.to_vat(value)
 
 Generate the french VAT from a SIREN or a SIRET and return a `string`
-Return `false` when value is neither a SIREN, SIRET or VAT.
-Return `value` if it already is a VAT.
+Return `nil` when value is neither a SIREN, SIRET or VAT.
 
 ### Vss.to_siren(value)
 
 Generate the SIREN from a VAT or a SIRET and return a `string`
-Return `false` when value is neither a SIREN, SIRET or VAT.
-Return `value` if it already is a SIREN.
+Return `nil` when value is neither a SIREN, SIRET or VAT.
 
 ### Vss.generate_siren
 

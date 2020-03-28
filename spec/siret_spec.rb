@@ -17,8 +17,8 @@ RSpec.describe Vss do
 
   describe '.format_siret' do
     [0, 1, true, false, {}, [], '813454717', 'FR42813454717', '813454717000141', '181345471700014'].each do |value|
-      it "raises for #{value}" do
-        expect { Vss.format_siret(value) }.to raise_error(RuntimeError)
+      it "returns nil for #{value}" do
+        expect(Vss.format_siret(value)).to eq(nil)
       end
     end
 
