@@ -17,8 +17,8 @@ RSpec.describe Vss do
 
   describe '.to_vat' do
     [0, 1, true, false, {}, [], '8134547174', 'FR428134547175', '8134547170001415', '1813454717000145'].each do |value|
-      it "returns false for #{value}" do
-        expect(Vss.to_vat(value)).to eq(false)
+      it "returns nil for #{value}" do
+        expect(Vss.to_vat(value)).to eq(nil)
       end
     end
 
@@ -41,8 +41,8 @@ RSpec.describe Vss do
 
   describe '.format_vat' do
     [0, 1, true, false, {}, [], '813454717', 'FR4281345471', 'FR428134547171'].each do |value|
-      it "raises for #{value}" do
-        expect { Vss.format_vat(value) }.to raise_error(RuntimeError)
+      it "returns nil for #{value}" do
+        expect(Vss.format_vat(value)).to eq(nil)
       end
     end
 
