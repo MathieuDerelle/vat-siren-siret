@@ -67,12 +67,12 @@ Evaluate if the `value` is a french VAT and return a `boolean`.
 
 ### Vss.to_vat(value)
 
-Generate the french VAT from a SIREN or a SIRET and return a `string`
+Generate the french VAT from a SIREN or a SIRET and return a `string` \
 Return `nil` when value is neither a SIREN, SIRET or VAT.
 
 ### Vss.to_siren(value)
 
-Generate the SIREN from a VAT or a SIRET and return a `string`
+Generate the SIREN from a VAT or a SIRET and return a `string` \
 Return `nil` when value is neither a SIREN, SIRET or VAT.
 
 ### Vss.generate_siren
@@ -90,9 +90,15 @@ Generate a random VAT passing the luhn check.
 
 ## Development
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+After checking out the repo, run `bin/setup` to install dependencies.
+Then, run `rake spec` to run the tests. You can also run `bin/console`
+for an interactive prompt that will allow you to experiment.
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+To install this gem onto your local machine, run `bundle exec rake install`.
+To release a new version, update the version number in `version.rb`,
+and then run `bundle exec rake release`, which will create a git tag
+for the version, push git commits and tags, and push the `.gem` file
+to [rubygems.org](https://rubygems.org).
 
 
 ## Contributing
