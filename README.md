@@ -16,7 +16,7 @@ It has been largely inspired by the [eponymous JS library](https://github.com/jb
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'vat-siren-siret', '~> 0.1'
+gem 'vat-siren-siret', '~> 1.0'
 ```
 
 And then execute:
